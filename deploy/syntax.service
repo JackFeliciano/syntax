@@ -1,0 +1,23 @@
+[Unit]
+Description=Syntagma demo
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/srv/syntax
+Environment=SYNTAX_BASE=/syntax/
+ExecStart=/usr/bin/php -S 127.0.0.1:8116 -t showroom showroom/index.php
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/syntax
+MemoryDenyWriteExecute=false
+
+[Install]
+WantedBy=multi-user.target
